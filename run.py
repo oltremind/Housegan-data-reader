@@ -14,7 +14,7 @@ def paths_to_ids(paths):
 
 
 
-def main(limit: int | None, max_processes: int):
+def main(limit: int, max_processes: int):
 
     os.makedirs("rplan_json", exist_ok=True)
     os.makedirs("failed_rplan_json", exist_ok=True)
@@ -36,7 +36,7 @@ def main(limit: int | None, max_processes: int):
     processes = set()
 
     for rplan_id in tqdm(todo_ids, smoothing=50/len(todo_ids)):
-        command = f'python raster_to_json.py --path rplan_dataset/floorplan_dataset/{rplan_id}.png || (touch failed_rplan_json/{rplan_id} && false)'
+        command = f'python3.9 raster_to_json.py --path rplan_dataset/floorplan_dataset/{rplan_id}.png || (touch failed_rplan_json/{rplan_id} && false)'
 
         processes.add(subprocess.Popen(command, shell=True))
         if len(processes) >= max_processes:

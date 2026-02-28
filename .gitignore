@@ -1,2 +1,3 @@
 __pycache__
 rplan_dataset
+rplan_json/*.json
