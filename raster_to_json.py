@@ -1,3 +1,4 @@
+import os
 import json
 import argparse
 import numpy as np
@@ -272,9 +273,13 @@ def raster_to_json(line, print_door_warning):
     # print(bboxes)
    
     fp_id = line.split("/")[-1].split(".")[0]
+
+    log_dir = "rplan_json"
+    if not os.path.exists(log_dir):
+        os.makedirs(log_dir)
   
     ### saving json files
-    with open(f"rplan_json/{fp_id}.json","w") as f:
+    with open(f"{log_dir}/{fp_id}.json","w") as f:
          json.dump(info, f)
 
 
